@@ -1,0 +1,81 @@
+<div class=" container  mt-2 bg-light p-2 ">
+
+    <h3 class="text-center mt-1 p-3">Add New Admin</h3>
+  
+  
+  
+  
+    <!-- form -->
+  
+    <form class="p-5" (click)="registerHandler($event)" [formGroup]="registerForm">
+      <!-- fullName -->
+      <div class="mb-3">
+
+        <input type="text" placeholder="fullName" class="form-control normalfont" name="fullName"
+          formControlName="fullName" />
+          <ng-container *ngIf="getName.touched">
+            <div *ngIf="getName.hasError('required')" id="emailHelp" class="form-text text-danger normalfont"> field is Required </div>
+            </ng-container >
+      </div>
+      <!-- Username -->
+      <div class="mb-3">
+        <input type="text" placeholder="Username" class="form-control normalfont" name="username"
+          formControlName="username" />
+          <ng-container *ngIf="getUName.touched">
+            <div *ngIf="getUName.hasError('required')" id="emailHelp" class="form-text text-danger normalfont">field is Required </div>
+            </ng-container >
+      </div>
+      <!-- Email -->
+
+      <div class="mb-3">
+
+        <input type="email" placeholder="Email" class="form-control normalfont" name="email" formControlName="email" />
+       <!--start of the two validations for email -->
+       <ng-container *ngIf="getEmail.touched">
+        <div *ngIf="getEmail.hasError('required')" id="emailHelp" class="form-text text-danger normalfont">Email is
+          Required</div>
+        <div *ngIf="getEmail.hasError('invalidEmail')" id="emailHelp" class="form-text text-danger normalfont">This
+          email does not match right email format</div>
+      </ng-container>
+
+      </div>
+
+      <!-- Password -->
+
+      <div class="mb-3 ">
+       <input type="password" placeholder="Password" class="form-control normalfont" name="password"
+          formControlName="password" />
+          <!--start of the two validations for password -->
+        <ng-container *ngIf="getPassword.touched">
+          <div *ngIf="getPassword.hasError('required')" id="emailHelp" class="form-text text-danger normalfont">
+            Password is Required</div>
+          <div *ngIf="getPassword.hasError('invalidPassword')" id="emailHelp" class="form-text text-danger normalfont">
+            This password does not match right password format</div>
+        </ng-container>
+
+      </div>
+  
+      <!-- PasswordConfirmation -->
+      <div class="input-group mb-3">
+
+        <input type="password" placeholder="Password Confirmation" class="form-control normalfont mb-3"
+          name="confirmPassword" formControlName="confirmPassword" />
+          <!--start of the two validations for password Confirmation -->
+        <ng-container *ngIf="getPasswordConfirmation.touched">
+          <div *ngIf="getPasswordConfirmation.hasError('required')" id="emailHelp"
+            class="form-text text-danger normalfont"> Password Confirmation is Required</div>
+          <div *ngIf="getPasswordConfirmation.hasError('passwordMismatch')" id="emailHelp"
+            class="form-text text-danger normalfont">Password and Password Confirmation do not match</div>
+        </ng-container>
+
+      </div>
+
+    
+  
+      <a> <button type="submit" class="btn btn btn-outline-success  m-2">Add</button></a>
+      <a [routerLink]="'/user_table'"> <button class="btn btn-success m-2">Back</button></a>
+
+      <p *ngIf="errorRegister !== '' && errorRegister!='[object Object]'"  class="text-danger">{{errorRegister}}</p>
+    </form>
+    <!-- form -->
+  </div>
